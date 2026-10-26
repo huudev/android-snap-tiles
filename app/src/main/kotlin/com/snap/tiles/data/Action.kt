@@ -26,6 +26,12 @@ enum class Action(
         "code",
         ActionCategory.SYSTEM_CONTROLS
     ),
+    USB_WIFI(
+        R.string.action_usb_wifi,
+        R.string.action_desc_usb_wifi,
+        "wifi",
+        ActionCategory.SYSTEM_CONTROLS
+    ),
     ACCESSIBILITY(
         R.string.action_accessibility,
         R.string.action_desc_accessibility,

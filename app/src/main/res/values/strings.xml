@@ -22,6 +22,7 @@
     <!-- Fixed tile labels -->
     <string name="tile_usb_debugging">USB Debugging</string>
     <string name="tile_developer_mode">Developer Mode</string>
+    <string name="tile_usb_wifi">USB Wi-Fi</string>
     <string name="tile_accessibility">Accessibility</string>
 
     <!-- Custom tile slot names (Five Elements) -->
@@ -56,6 +57,7 @@
     <!-- Action labels -->
     <string name="action_usb_debugging">USB Debugging</string>
     <string name="action_developer_mode">Developer Mode</string>
+    <string name="action_usb_wifi">Wireless Debugging (USB Wi-Fi)</string>
     <string name="action_accessibility">Accessibility Services</string>
     <string name="action_stay_awake">Stay Awake</string>
     <string name="action_running_services">Running Services</string>
@@ -95,6 +97,7 @@
     <!-- Action descriptions -->
     <string name="action_desc_usb_debugging">ADB mode status tile</string>
     <string name="action_desc_developer_mode">Toggle developer options</string>
+    <string name="action_desc_usb_wifi">ADB over Wi-Fi mode</string>
     <string name="action_desc_accessibility">Toggle accessibility services</string>
     <string name="action_desc_stay_awake">Prevent screen from sleeping</string>
     <string name="action_desc_running_services">View active background tasks</string>

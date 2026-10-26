@@ -37,6 +37,19 @@
           }
         },
         {
+          "id": "USB_WIFI",
+          "label": "Wireless Debugging",
+          "description": "ADB over Wi-Fi mode",
+          "icon": "wifi",
+          "emoji": "📶",
+          "category": "SYSTEM_CONTROLS",
+          "settingType": "global",
+          "settingKey": "adb_wifi_enabled",
+          "onValue": "1",
+          "offValue": "0",
+          "valueType": "int"
+        },
+        {
           "id": "STAY_AWAKE",
           "label": "Stay Awake",
           "description": "Prevent screen from sleeping while plugged in",

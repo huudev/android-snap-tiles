@@ -328,4 +328,5 @@ private fun getActionEmoji(action: Action): String = when (action) {
     Action.STAY_AWAKE -> "☀️"; Action.RUNNING_SERVICES -> "🧠"; Action.FORCE_RTL -> "↔️"
     Action.PROFILE_GPU -> "📊"; Action.USB_DEBUGGING -> "🔌"; Action.DEMO_MODE -> "📱"
     Action.ANIMATOR_SCALE -> "⚡"; Action.DEVELOPER_MODE -> "🛠️"; Action.ACCESSIBILITY -> "♿"
+    Action.USB_WIFI -> "📶"
 }

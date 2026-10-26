@@ -49,6 +49,16 @@
             </intent-filter>
         </service>
 
+        <service android:name="com.snap.tiles.tile.UsbWifiTile"
+            android:label="@string/tile_usb_wifi"
+            android:icon="@drawable/ic_round_adb"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
         <service android:name="com.snap.tiles.tile.AccessibilityTile"
             android:label="@string/tile_accessibility"
             android:icon="@drawable/ic_tile_accessibility"

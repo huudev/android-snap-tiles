@@ -82,5 +82,8 @@ class UsbDebugTile : FixedTileBase(Action.USB_DEBUGGING)
 /** Fixed tile: Developer Mode */
 class DevModeTile : FixedTileBase(Action.DEVELOPER_MODE)
 
+/** Fixed tile: USB Wi-Fi */
+class UsbWifiTile : FixedTileBase(Action.USB_WIFI)
+
 /** Fixed tile: Accessibility Services */
 class AccessibilityTile : FixedTileBase(Action.ACCESSIBILITY)

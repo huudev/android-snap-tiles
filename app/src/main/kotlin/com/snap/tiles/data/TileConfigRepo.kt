@@ -30,8 +30,9 @@ object TileConfigRepo {
     const val SLOT_COUNT = 5
 
     val fixedTiles = listOf(
-        FixedTileInfo(Action.USB_DEBUGGING, R.string.tile_usb_debugging, R.drawable.ic_tile_usb_debug, "com.snap.tiles.tile.UsbDebugTile"),
         FixedTileInfo(Action.DEVELOPER_MODE, R.string.tile_developer_mode, R.drawable.ic_tile_dev_mode, "com.snap.tiles.tile.DevModeTile"),
+        FixedTileInfo(Action.USB_DEBUGGING, R.string.tile_usb_debugging, R.drawable.ic_tile_usb_debug, "com.snap.tiles.tile.UsbDebugTile"),
+        FixedTileInfo(Action.USB_WIFI, R.string.tile_usb_wifi, R.drawable.ic_round_adb, "com.snap.tiles.tile.UsbWifiTile"),
         FixedTileInfo(Action.ACCESSIBILITY, R.string.tile_accessibility, R.drawable.ic_tile_accessibility, "com.snap.tiles.tile.AccessibilityTile")
     )
 

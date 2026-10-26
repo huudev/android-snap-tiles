@@ -54,6 +54,7 @@ import com.snap.tiles.data.FixedTileInfo
 import com.snap.tiles.data.PrefsManager
 import com.snap.tiles.data.TileConfig
 import com.snap.tiles.data.TileConfigRepo
+import com.snap.tiles.executor.DynamicActionExecutor
 import com.snap.tiles.float.FloatingTileService
 import com.snap.tiles.ui.theme.Success
 
@@ -233,10 +234,24 @@ private fun PermissionRow(
 @Composable
 private fun FixedTilesSection(context: Context) {
     val fixedTiles = TileConfigRepo.fixedTiles
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    val tileStates = remember { mutableStateMapOf<String, Boolean>() }
+
+    fun refreshStates() {
+        fixedTiles.forEach { info ->
+            tileStates[info.action.name] = DynamicActionExecutor.getState(info.action.name, context.contentResolver)
+        }
+    }
+
+    LaunchedEffect(lifecycleOwner) {
+        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            refreshStates()
+        }
+    }
 
     // Read cached a11y services for chip display — refresh on every resume
     val a11yApps = remember { mutableStateOf<List<A11yAppInfo>>(emptyList()) }
-    val lifecycleOwner = LocalLifecycleOwner.current
     LaunchedEffect(lifecycleOwner) {
         lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
             a11yApps.value = getActiveA11yApps(context)
@@ -248,7 +263,18 @@ private fun FixedTilesSection(context: Context) {
         Card(modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLowest), shape = RoundedCornerShape(16.dp)) {
             Column {
                 fixedTiles.forEachIndexed { index, info ->
-                    FixedTileRow(info = info)
+                    val actionId = info.action.name
+                    val isChecked = tileStates[actionId] ?: false
+                    FixedTileRow(
+                        info = info,
+                        isChecked = isChecked,
+                        onToggle = { newChecked ->
+                            tileStates[actionId] = newChecked
+                            DynamicActionExecutor.setState(actionId, context.contentResolver, newChecked)
+                            refreshStates()
+                            TileConfigRepo.requestRefreshAffectedTiles(context, setOf(actionId))
+                        }
+                    )
                     // Show a11y service chips under the Accessibility row
                     if (info.action == Action.ACCESSIBILITY && a11yApps.value.isNotEmpty()) {
                         A11yServiceChips(a11yApps.value)
@@ -263,21 +289,52 @@ private fun FixedTilesSection(context: Context) {
 }
 
 @Composable
-private fun FixedTileRow(info: FixedTileInfo) {
+private fun FixedTileRow(
+    info: FixedTileInfo,
+    isChecked: Boolean,
+    onToggle: (Boolean) -> Unit
+) {
     val label = stringResource(info.labelRes)
     Row(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 14.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onToggle(!isChecked) }
+            .padding(horizontal = 20.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Surface(modifier = Modifier.size(36.dp), shape = RoundedCornerShape(10.dp),
-            color = MaterialTheme.colorScheme.primaryContainer) {
+        Surface(
+            modifier = Modifier.size(36.dp),
+            shape = RoundedCornerShape(10.dp),
+            color = if (isChecked) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceContainerHigh
+        ) {
             Box(contentAlignment = Alignment.Center) {
-                Icon(painter = painterResource(info.iconRes), contentDescription = label, modifier = Modifier.size(20.dp),
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer)
+                Icon(
+                    painter = painterResource(info.iconRes),
+                    contentDescription = label,
+                    modifier = Modifier.size(20.dp),
+                    tint = if (isChecked) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
         }
-        Text(label, fontWeight = FontWeight.Bold, fontSize = 16.sp, modifier = Modifier.weight(1f))
+        Text(
+            label,
+            fontWeight = FontWeight.Bold,
+            fontSize = 16.sp,
+            modifier = Modifier.weight(1f)
+        )
+        Switch(
+            checked = isChecked,
+            onCheckedChange = onToggle,
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = Color.White,
+                checkedTrackColor = MaterialTheme.colorScheme.primary,
+                uncheckedThumbColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                uncheckedTrackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                uncheckedBorderColor = Color.Transparent
+            ),
+            modifier = Modifier.height(24.dp)
+        )
     }
 }
 
