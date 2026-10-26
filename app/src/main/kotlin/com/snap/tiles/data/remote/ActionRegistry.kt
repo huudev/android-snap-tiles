@@ -24,7 +24,7 @@ object ActionRegistry {
     private const val TAG = "ActionRegistry"
 
     private const val REMOTE_URL =
-        "https://raw.githubusercontent.com/kaidraw-21/android-snap-tiles/main/config/actions.json"
+        "https://raw.githubusercontent.com/huudev/android-snap-tiles/main/config/actions.json"
 
     private const val CACHE_FILE = "actions_cache.json"
     private const val CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000L // 6 hours

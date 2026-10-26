@@ -2,6 +2,7 @@ package com.snap.tiles.executor
 
 import android.content.ContentResolver
 import android.content.Context
+import android.os.Build
 import android.provider.Settings
 import android.util.Log
 import com.snap.tiles.data.PrefsManager
@@ -185,6 +186,11 @@ object DynamicActionExecutor {
     }
 
     private fun writeSetting(sw: SettingWrite, resolver: ContentResolver) {
+        val min = sw.minSdk
+        if (min != null && Build.VERSION.SDK_INT < min) {
+            Log.d(TAG, "writeSetting(${sw.key}) skipped — needs API $min, device is ${Build.VERSION.SDK_INT}")
+            return
+        }
         writeValue(sw.settingType, sw.key, sw.valueType, sw.value, resolver)
     }
 

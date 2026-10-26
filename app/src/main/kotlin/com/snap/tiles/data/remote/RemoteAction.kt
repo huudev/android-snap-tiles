@@ -68,7 +68,9 @@ data class SettingWrite(
     val settingType: SettingType = SettingType.GLOBAL,
     val key: String,
     val value: String,
-    val valueType: ValueType = ValueType.INT
+    val valueType: ValueType = ValueType.INT,
+    /** Skip this write on devices below this API level (e.g. adb_wifi_enabled needs 30). */
+    val minSdk: Int? = null
 )
 
 data class LinkedSetting(

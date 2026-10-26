@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "actions": [
     {
       "id": "DEVELOPER_MODE",
@@ -29,7 +29,10 @@
           "valueType": "int",
           "sideEffects": {
             "onEnable": [
-              { "settingType": "global", "key": "adb_wifi_enabled", "value": "1", "valueType": "int" }
+              { "settingType": "global", "key": "adb_wifi_enabled", "value": "1", "valueType": "int", "minSdk": 30 }
+            ],
+            "onDisable": [
+              { "settingType": "global", "key": "adb_wifi_enabled", "value": "0", "valueType": "int", "minSdk": 30 }
             ]
           }
         },
