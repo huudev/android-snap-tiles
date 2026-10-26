@@ -1,9 +1,20 @@
 # Release Notes
 
+## v1.0.5 — 2026-03-20
+
+### Download
+**[⬇ snap-tiles-v1.0.5.apk](https://github.com/huudev/android-snap-tiles/raw/main/download/snap-tiles-v1.0.5.apk)**
+
+### What's New
+- Added interactive toggle switches for Developer Mode, USB Debugging, and Wireless Debugging (USB Wi-Fi) directly on the Home Screen
+- Added Wireless Debugging (USB Wi-Fi) as a supported action across custom tiles, floating tiles, and home screen widgets
+
+---
+
 ## v1.0.2 — 2026-03-18
 
 ### Download
-**[⬇ snap-tiles-v1.0.2.apk](https://github.com/kaidraw-21/android-snap-tiles/raw/main/download/snap-tiles-v1.0.2.apk)**
+**[⬇ snap-tiles-v1.0.2.apk](https://github.com/huudev/android-snap-tiles/raw/main/download/snap-tiles-v1.0.2.apk)**
 
 ### What's New
 
@@ -29,7 +40,7 @@
 ## v1.0.1 — 2026-03-17
 
 ### Download
-**[⬇ snap-tiles-v1.0.1.apk](https://github.com/kaidraw-21/android-snap-tiles/raw/main/download/snap-tiles-v1.0.1.apk)**
+**[⬇ snap-tiles-v1.0.1.apk](https://github.com/huudev/android-snap-tiles/raw/main/download/snap-tiles-v1.0.1.apk)**
 
 ### Improvements
 - Optimistic UI update on tile tap — tile state flips instantly without waiting for IO

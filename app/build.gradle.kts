@@ -20,14 +20,15 @@ android {
         applicationId = "com.snap.tiles"
         minSdk = 26
         targetSdk = 34
-        versionCode = 5
-        versionName = "1.0.4"
+        versionCode = 6
+        versionName = "1.0.5"
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("release")
+            val kFile = file(System.getenv("SIGNING_STORE_FILE") ?: "${rootProject.projectDir}/.keystore/release.jks")
+            signingConfig = if (kFile.exists()) signingConfigs.getByName("release") else signingConfigs.getByName("debug")
         }
     }
 

@@ -40,9 +40,9 @@ Quick Settings tiles to toggle system settings on Android with a single tap — 
 
 ### Download APK
 
-Grab the latest release from the [Releases page](https://github.com/kaidraw-21/android-snap-tiles/blob/main/RELEASES.md).
+Grab the latest release from the [Releases page](https://github.com/huudev/android-snap-tiles/blob/main/RELEASES.md).
 
-**[⬇ Download snap-tiles-v1.0.4.apk](https://github.com/kaidraw-21/android-snap-tiles/raw/main/download/snap-tiles-v1.0.4.apk)**
+**[⬇ Download snap-tiles-v1.0.5.apk](https://github.com/huudev/android-snap-tiles/raw/main/download/snap-tiles-v1.0.5.apk)**
 
 ### Build from source
 
